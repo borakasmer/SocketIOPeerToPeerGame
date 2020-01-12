@@ -1,0 +1,61 @@
+<style>
+    .check {
+        opacity: 0.5;
+        color: #996;
+    }
+
+    select {
+        font-size: 25px;
+    }
+</style>
+<div class="container">
+    <div class="jumbotron">
+        <h2 style="text-align:center">coderBora® Profil Sayfası<br>
+            <font color="red">
+                <h4>SocketID: {{socketID}}</h4>
+            </font>
+        </h2>
+    </div>
+    <hr>
+    <table>
+        <tr>
+            <td>
+                <h3>Gönderilecek Kişi:</h3>
+                <select [(ngModel)]="selectedSocket">
+                    <option *ngFor="let socket of socketList" [value]="socket">
+                        {{ socket }}
+                    </option>
+                </select>
+            </td>
+            <td style="padding-left: 100px">
+                <h3>Arka Resimler :</h3>
+                <div class="btn-group" role="group" aria-label="Picture items">
+                    <button type="button" class="btn btn-primary"><img src="../assets/images/beach.jpg"
+                            class="img-thumbnail img-check" width="500" height="50" alt="painting"
+                            (click)="changePicture('beach')">
+                    </button>
+                    <button type="button" class="btn btn-primary"><img src="../assets/images/love.jpg"
+                            class="img-thumbnail img-check" width="500" height="50" alt="oldmans"
+                            (click)="changePicture('love')"></button>
+                    <button type="button" class="btn btn-primary"><img src="../assets/images/worker.jpg"
+                            class="img-thumbnail img-check" width="500" height="50" alt="seeView"
+                            (click)="changePicture('worker')"></button>
+                    <button type="button" class="btn btn-primary"><img src="../assets/images/motor.jpg"
+                            class="img-thumbnail img-check" width="500" height="50" alt="picnic"
+                            (click)="changePicture('motor')"></button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td></td>    
+            <td *ngIf="hasBigImage">
+                <img [src]="bigImage" width="1000px" height="500px" [hidden]="bigImage==''">
+            </td>
+            <td *ngIf="!hasBigImage">
+                <img src="./assets/images/green_arrows.gif" width="250px" *ngIf="bigImage!=''" style="padding-left: 150px;">
+                <span *ngIf="bigImage!=''">Sending.. <b>{{selectedSocket}}</b></span>
+                <img [src]=" bigImage" width="400" height="200px" [hidden]="bigImage==''">
+            </td>
+        </tr>
+    </table>
+</div>
